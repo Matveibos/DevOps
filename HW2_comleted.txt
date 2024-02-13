@@ -1,0 +1,20 @@
+1) 	#!/bin/bash
+	echo "enter filename"
+	read filename	
+	if grep "error" $filename
+	then rm $filename
+	echo "file has been removed"
+	fi
+__________________________________
+
+2) sudo useradd user1
+	#!/bin/bash
+	echo"enter username"
+	read username
+	if grep "$username" /etc/passwd
+	then echo "this username already exists"
+	else sudo useradd $username
+	fi
+	
+
+3) systemd -система управления службами linux. Данная служба созволяет запускать и останавливать сервисы, просматривать их статусы и многое другое.
