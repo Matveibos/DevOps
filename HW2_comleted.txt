@@ -7,8 +7,7 @@
 	fi
 __________________________________
 
-2) sudo useradd user1
-	#!/bin/bash
+2)	#!/bin/bash
 	echo"enter username"
 	read username
 	if grep "$username" /etc/passwd
@@ -18,3 +17,56 @@ __________________________________
 	
 
 3) systemd -система управления службами linux. Данная служба созволяет запускать и останавливать сервисы, просматривать их статусы и многое другое.
+
+4)
+	4.1) создал скрипт который будет каждые 5 секунд выводить текст 
+		#!/bin/bash
+		while [ true ]
+		do
+			echo "this service is alive"
+			sleep 5
+		done
+	4.2) создал файл командой sudo nano my-first-service.service
+	4.3) содержимое файла:
+
+		[Unit]
+			Description=Smart myfirstservice
+
+		[Service]
+			ExecStart=/bin/bash /home/matvey/lesson2/homework/3.sh
+			Type=idle
+			KillMode=process
+
+			SyslogIdentifier=my-first-service
+			SyslogFacility=daemon
+
+			Restart=on-failure
+
+		[Install]
+			WantedBy=multiuser.target
+	4.4) запустил сервис командой systemctl start my-first-service.service
+	4.5) убедился в работе сервиса с помощью команды sudo systemctl status my-first-service.service
+Вывод:
+
+	 my-first-service.service - Smart myfirstservice
+     Loaded: loaded (/lib/systemd/system/my-first-service.service; disabled; vendor preset: enabled)
+     Active: active (running) since Tue 2024-02-13 14:29:55 +03; 5min ago
+   Main PID: 12308 (bash)
+      Tasks: 2 (limit: 6982)
+     Memory: 564.0K
+        CPU: 54ms
+     CGroup: /system.slice/my-first-service.service
+             ├─12308 /bin/bash /home/matvey/lesson2/homework/3.sh
+             └─12408 sleep 5
+
+лют 13 14:34:25 matveybos my-first-service[12308]: this service is alive
+лют 13 14:34:30 matveybos my-first-service[12308]: this service is alive
+лют 13 14:34:35 matveybos my-first-service[12308]: this service is alive
+лют 13 14:34:40 matveybos my-first-service[12308]: this service is alive
+лют 13 14:34:45 matveybos my-first-service[12308]: this service is alive
+лют 13 14:34:50 matveybos my-first-service[12308]: this service is alive
+лют 13 14:34:55 matveybos my-first-service[12308]: this service is alive
+лют 13 14:35:00 matveybos my-first-service[12308]: this service is alive
+лют 13 14:35:05 matveybos my-first-service[12308]: this service is alive
+лют 13 14:35:10 matveybos my-first-service[12308]: this service is alive
+
