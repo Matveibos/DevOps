@@ -1,0 +1,10 @@
+1)https://hub.docker.com/u/matveibos
+2)Создал простой Dockerfile где прописал просто FROM ubuntu:18.04, после чего выполнил команду docker build -t ubuntudevops .
+, в результате получил образ ubuntuimagе и проверил его наличие командой docker images. После чего выполнил команду docker login -u matveibos
+в качестве пароля указал ключ доступа. После чего выполнил команду doсker tag ubuntudevops matveibos/ubuntudevops(переименовал образ
+для дальнейшего пуша в репозиторий. Для пуша в репозиторий выполнил команду docker push matveibos/ubuntudevops:latest.
+Ссылка на репозиторий https://hub.docker.com/repository/docker/matveibos/ubuntudevops/general.
+3)Инструкции ENTRYPOINT и CMD "по одиночке" "ведут" себя идентично. кроме случая с запуском контейнера с аргументами командной строки
+В данном случае параметры ENTRYPOINT не переопределятся, а добавляются к аргументам инструкции ENTRYPOINT, в отличие от CMD, в случае с которой
+аргументы командной строки переопределят аргументы CMD. А также в докерфайле должна юыть как минимум одна инструкция из данных двух.
+
