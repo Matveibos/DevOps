@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - 8081:80
+    volumes:
+      - /var/lib/docker/volumes/my_volume/_data:/usr/share/nginx/html
